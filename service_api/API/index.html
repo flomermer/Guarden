@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Guarden API - Chen & Tommy</title>
+
+    <link rel="stylesheet" type="text/css" href="includes/style.css">
+    <link rel="stylesheet" type="text/css" href="jquery/plugins/prettyJSON/jquery.jsonPresenter.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="jquery/plugins/prettyJSON/jquery.jsonPresenter.js"></script>
+    <script src="includes/script.js"></script>
+  </head>
+  <body>
+    <div class='wrapper'>
+      <h1>Guarden - API</h1>
+      <nav id="menuAPI">
+        <ul>
+          <li data-api="#userAPI" class="selected">User</li>
+          <li data-api="#communityAPI">Community</li>
+          <li data-api="#taskAPI">Task</li>
+        </ul>
+      </nav>
+
+      <article>
+        <div id="userAPI" class="divAPI">
+          <ul class='ulAPI'>
+            <li><span class='title'>Get All Users</span>
+              <ul>
+                <li>Relative Path: <span>/user/getAll</span></li>
+                <li>Verb: <span>Get</span></li>
+                <li>URL: <a href='/user/getAll' target='_blank'>/user/getAll</a></li>
+                <li>RESPOND:
+                  <ul>
+                    <li>
+                      <div class='respond' data-url='/user/getAll' data-verb='GET'>
+
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class='title'>Add User</span>
+              <ul>
+                <li>Relative Path: <span>/user/add</span></li>
+                <li>Verb: <span>PUT</span></li>
+                <li>Params:
+                    <ul>
+                      <li>fullName</li>
+                      <li>email</li>
+                      <li>googleToken</li>
+                    </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class='title'>Edit User</span>
+              <ul>
+                <li>Relative Path: <span>/user/edit</span></li>
+                <li>Verb: <span>POST</span></li>
+                <li>Params:
+                    <ul>
+                      <li>user_id</li>
+                      <li>about</li>
+                    </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class='title'>Delete User</span>
+              <ul>
+                <li>Relative Path: <span>/user/delete</span></li>
+                <li>Verb: <span>Delete</span></li>
+                <li>Params:
+                    <ul>
+                      <li>user_id</li>
+                    </ul>
+                </li>
+              </ul>
+            </li>
+           </ul>
+          </div><!--userAPI-->
+
+        <div id="communityAPI" class="divAPI">
+            <ul class='ulAPI'>
+              <li><span class='title'>Add Community</span>
+                <ul>
+                  <li>Relative Path: <span>/community/add</span></li>
+                  <li>Verb: <span>PUT</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>name</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Delete Community</span>
+                <ul>
+                  <li>Relative Path: <span>/community/delete</span></li>
+                  <li>Verb: <span>DELETE</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>community_id</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Edit Community</span>
+                <ul>
+                  <li>Relative Path: <span>/community/edit</span></li>
+                  <li>Verb: <span>POST</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>community_id</li>
+                        <li>name</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Invite User to Community</span>
+                <ul>
+                  <li>Relative Path: <span>/community/invite</span></li>
+                  <li>Verb: <span>POST</span></li>
+                  <li>Description: <span>Invite existing user to participate in a community. (used by Admin only).</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>community_id</li>
+                        <li>user_id</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Remove User from Community</span>
+                <ul>
+                  <li>Relative Path: <span>/community/removeUserFromCommunity</span></li>
+                  <li>Verb: <span>POST</span></li>
+                  <li>Description: <span>Remove existsing user from community. (NOT deletes the user, only removes it from community).</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>community_id</li>
+                        <li>user_id</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Add Post</span>
+                <ul>
+                  <li>Relative Path: <span>/community/addPost</span></li>
+                  <li>Verb: <span>PUT</span></li>
+                  <li>Description: <span>Upload new post to community's feed.</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>community_id</li>
+                        <li>user_id</li>
+                        <li>content</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Add Comment</span>
+                <ul>
+                  <li>Relative Path: <span>/community/addComment</span></li>
+                  <li>Verb: <span>PUT</span></li>
+                  <li>Description: <span>Comment on a specific post.</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>community_id</li>
+                        <li>user_id</li>
+                        <li>content</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>Like Post</span>
+                <ul>
+                  <li>Relative Path: <span>/community/likePost</span></li>
+                  <li>Verb: <span>PUT</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>post_id</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span class='title'>disLike Post</span>
+                <ul>
+                  <li>Relative Path: <span>/community/dislikePost</span></li>
+                  <li>Verb: <span>PUT</span></li>
+                  <li>Params:
+                      <ul>
+                        <li>post_id</li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+           </div><!--communityAPI-->
+
+          <div id="taskAPI" class="divAPI">
+              <ul class='ulAPI'>
+                  <li>
+                      <span class='title'>Get All Tasks</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/getAll</span></li>
+                          <li>Verb: <span>Get</span></li>
+                          <li>URL: <a href='/task/getAll' target='_blank'>/task/getAll</a></li>
+                          <li>
+                              RESPOND:
+                              <ul>
+                                  <li>
+                                      <div class='respond' data-url='/task/getAll' data-verb='GET'>
+
+                                      </div>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <span class='title'>Add Task</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/add</span></li>
+                          <li>Verb: <span>PUT</span></li>
+                          <li>Description:
+                            <span>Admin insert new task. if expireDuration is being sent-> after this task will be completed<br />
+                                  The task will be suspended for the given expireDuration before it will be opened again.
+                            </span>
+                          </li>
+                          <li>
+                              Params:
+                              <ul>
+                                  <li>community_id</li>
+                                  <li>title - String</li>
+                                  <li>desc - String</li>
+                                  <li>level - Number</li>
+                                  <li>points - Number</li>
+                                  <li>(optional) expireDuration - String(ww:dd:hh)</li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <span class='title'>Delete Task</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/delete</span></li>
+                          <li>Verb: <span>DELETE</span></li>
+                          <li>
+                              Params:
+                              <ul>
+                                  <li>task_id</li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <span class='title'>Choose Task</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/choose</span></li>
+                          <li>Verb: <span>POST</span></li>
+                          <li>Description: <span>Assign task to user</span></li>
+                          <li>
+                              Params:
+                              <ul>
+                                  <li>task_id</li>
+                                  <li>user_id</li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <span class='title'>Complete Task</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/complete</span></li>
+                          <li>Verb: <span>POST</span></li>
+                          <li>Description:
+                                <span>
+                                service will increment user points per task(each 10 points-> user will increase level)<br />
+                                If task has expireDuration -> mission will not be available until expireDuration expired.
+                                </span>
+                            </li>
+                          <li>
+                              Params:
+                              <ul>
+                                  <li>user_id</li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <span class='title'>Unlock Expired Tasks</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/unlockExpired</span></li>
+                          <li>Verb: <span>POST</span></li>
+                          <li>
+                              Description:
+                              <span>
+                                  Unlocks all special tasks which their expiredDate was expired - so other users could choose them again.
+                              </span>
+                          </li>
+                          <li>
+                              Params:
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+        <ul>
+            <li><span class='title'>Error Handling:</span>
+                <ul>
+                  <li>RESPOND:
+                    <ul>
+                      <li>
+                        <div id="errorRespond">
+
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+            </li>
+        </ul>
+      </article>
+    </div>
+
+  </body>
+</html>
