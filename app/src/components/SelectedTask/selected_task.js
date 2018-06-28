@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class Level extends Component{
+class SelectedTask extends Component{
   render(){
     return(
-      <div>{this.props.level}</div>
+      <div>SelectedTask</div>
     );
   }
 }
 
 function mapStateToProps(state){
   return{
-    level: state.user.level
+    selectedTask: state.selectedTask
   };
 }
 
-export default connect(mapStateToProps)(Level);
+export default connect(mapStateToProps)(SelectedTask);

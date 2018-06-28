@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import Level from './Level/level';
+import SelectedTask from './SelectedTask/selected_task';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <div>
-        App
+        <Level />
+        <SelectedTask />
       </div>
     );
   }
 }
+
+export default App;

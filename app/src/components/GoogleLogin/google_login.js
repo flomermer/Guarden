@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {updateUser} from '../../actions/index';
+import {fetchUser} from '../../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -11,15 +11,14 @@ class GoogleLogin extends Component{
     return(
       <div>
         GoogleLogin
-        <button onClick={() => this.props.updateUser()}>Login</button>
+        <button onClick={() => this.props.fetchUser()}>Login</button>
       </div>
     );
   }
 }
 
 function mapDispatchToProps(dispatch){
-  console.log("SA");
-  return bindActionCreators({updateUser: updateUser}, dispatch);
+  return bindActionCreators({fetchUser}, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(GoogleLogin);
