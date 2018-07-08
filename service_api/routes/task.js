@@ -9,11 +9,41 @@ const Community = require('../db/community');
 const User = require('../db/user');
 const Task = require('../db/task');
 
+const POINTS_PER_LEVEL = 10;
 
 Date.prototype.addHours = function(h) {
    this.setTime(this.getTime() + (h*60*60*1000));
    return this;
 }
+
+router.post('/getTasksList', function(req, res) {
+  let user_id = req.body.user_id;
+
+  if(!user_id)
+    return sendError(res,'user_id params is missing');
+
+  User.findById(user_id, (err,user) => {
+    if(!user)
+       return sendError(res, `user: ${user_id} not exists`);
+
+     Task.update({
+       isSpecial: 1,
+       expireDate: {$lte: Date.now()}
+     }, {
+       isOpen: true,
+       expireDate: null
+     }, {multi: true}, (err,doc) => {
+
+       Task.find({
+         community_id: user.community_id,
+         isOpen: true
+       }, (err,tasks) => {
+         res.json(tasks);
+       });
+
+     }); //task.update
+   });   //user.findByID
+});
 
 router.get('/getAll', function(req, res) {
   Task.find()
@@ -34,10 +64,6 @@ function cancelTask(task_id){
   });
 };
 
-router.get('/', (req, res) => {   // /communites
-  res.send("this is tasks");
-});
-
 router.post('/complete', function(req, res) {
   let user_id = req.body.user_id;
 
@@ -51,7 +77,6 @@ router.post('/complete', function(req, res) {
       return sendError(res, `user has no current task`);
 
     Task.findById(user.selectedTask, (err,task) => {
-
       if(task.isSpecial){
         task.expireDate = new Date().addHours(task.expireDuration);
         task.save();
@@ -59,9 +84,10 @@ router.post('/complete', function(req, res) {
 
       user.selectedTask = null;
       let newPoints = user.points + task.points;
-      if(newPoints>10)
+      if(newPoints>=10)
         user.level += 1;
-      user.points = newPoints % 10;
+      user.points = newPoints % POINTS_PER_LEVEL;
+      user.lastTask = objectID(task._id);
       user.save();
 
       /*send new post*/
@@ -72,12 +98,12 @@ router.post('/complete', function(req, res) {
 
         var newPost = {
           author_id: objectID(user_id),
-          content: `user ${user.fullName} has completed Task: ${task.desc}`
+          content: `I've just completed Task: ${task.title}`
         };
 
-        community.posts.push(newPost);
+        community.posts.unshift(newPost);
         community.save();
-        return sendSuccess(res);
+        return res.json({user: user, newPost: null});
       });
     });
   });
@@ -116,6 +142,27 @@ router.post('/choose', function(req, res) {
     });
   });
 });
+
+router.post('/cancel', function(req, res) {
+  let user_id = req.body.user_id;
+
+  if(!user_id)
+    return sendError(res,'user_id params are missing');
+
+  User.findById(user_id, (err,user) => {
+    if(!user)
+       return sendError(res, `user: ${user_id} not exists`);
+    else if(!user.selectedTask)
+      return sendError(res, `user has not task selected`);
+
+    cancelTask(user.selectedTask);
+
+    user.selectedTask = null;
+    user.save();
+    return sendSuccess(res);
+  });
+});
+
 
 router.delete('/delete', function(req, res) {
   let _id = req.body.task_id;

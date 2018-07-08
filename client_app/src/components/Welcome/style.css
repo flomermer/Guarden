@@ -1,0 +1,18 @@
+.Welcome{
+  display:flex;
+  flex-direction: row;
+}
+
+.Welcome-Tree{
+  width:35%;
+  height: 100%;
+  border-right:0px solid green;
+  text-align: center;
+  margin-left: 5%;
+}
+.Welcome-Task{
+  margin-left:4%;
+  width:60%;
+  height: 100%;
+  text-align: center;
+}

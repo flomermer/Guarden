@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const objectID = mongoose.Types.ObjectId;
@@ -7,24 +8,79 @@ const User = require('../db/user');
 const sendError = require('./error');
 const sendSuccess = require('./success');
 
+
+router.post('/getTreeUsers', function(req, res) {
+  let user_id = req.body.user_id;
+
+  if(!user_id)
+    return sendError(res,"user_id param is missing");
+
+
+  User.findById(user_id).
+    exec(function (err, user) {
+      if (err) return sendError(err.message);
+
+      User.find({
+        community_id: user.community_id,
+        _id: {$ne: user_id}
+      }).sort('level').exec((err,users) => {
+        if(err) return sendError(err.message);
+
+        let levelObj = _.mapKeys(users,'level');
+        res.json(levelObj);
+      });
+    });
+});
+
 router.post('/getByID', function(req, res) {
   let user_id = req.body.user_id;
 
   if(!user_id)
     return sendError(res,"user_id param is missing");
 
-  User.findById(user_id,(err,user) => {
-    if(err)
-       return sendError(res, `user_id ${user_id} not exists`);
+  User.findById(user_id).
+    populate('selectedTask').populate('lastTask').
+    exec(function (err, user) {
+      if (err) return sendError(err.message);
 
-    res.json(user);
-  });
+      res.json(user);
+    });
 });
 
 router.get('/getAll', function(req, res) {
   User.find()
     .then(function(doc){
       res.json(doc);
+  });
+});
+
+router.post("/googleLogin", (req, res) => {
+  const data = req.body;
+  const {googleID, googleToken, email, pic, fullName} = data;
+
+  User.findOne({googleID}).then((user) => {
+    if(!user){ //need to automatically sign up user
+      var newUser = new User({
+        googleID,
+        email,
+        fullName,
+        pic
+      });
+      console.log(newUser);
+      newUser.save((err, newUser) => {
+        if(err) return sendError(err.message)
+        return res.json(newUser);
+      });
+    } else { //user already exists
+      /*
+      user.googleToken = googleToken;
+      user.save((err, updatedUser) => {
+        if(err) return sendError(err.message)
+        return res.json(updatedUser);
+      });
+      */
+      return res.json(user);
+    }
   });
 });
 
@@ -42,7 +98,7 @@ router.put('/add', function(req, res) {
     googleToken
   });
   newUser.save(function (err) {
-    if (err) return res.json(err);
+    if (err) return sendError(err.message);
 
     return sendSuccess(res);
   });

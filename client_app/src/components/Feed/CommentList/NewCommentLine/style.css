@@ -1,0 +1,13 @@
+.NewCommentLine input::placeholder{
+  color: #aaa;
+}
+.NewCommentLine input{
+  width: 80%;
+  height: 40px;
+  border-radius: 10px;
+  border:1px solid #aaa;
+  padding: 5%;
+  color: #044859;
+  box-shadow: 3px 4px #bcbcbc;
+  font-size: 0.8em;
+}

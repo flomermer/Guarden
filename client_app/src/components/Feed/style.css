@@ -1,0 +1,11 @@
+.Feed{
+  padding: 25px;
+}
+.Feed .Feed-title{
+  font-size: 1.3em;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.Feed .Feed-PostBar{
+  margin-bottom: 30px;
+}

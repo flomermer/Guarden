@@ -1,0 +1,22 @@
+.CommentItem{
+  display:flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.CommentItem-profilePic img{
+  width:35px;
+  height:35px;
+  border-radius: 50px;
+}
+
+.CommentItem-content-container{
+  margin-left: 10px;
+  font-size: 0.8em;
+  background: #eee;
+  padding: 8px;
+  border-radius: 15px;
+}
+.CommentItem-author{
+  font-weight:bold;
+}

@@ -8,6 +8,63 @@ const sendSuccess = require('./success');
 const Community = require('../db/community');
 const User = require('../db/user');
 
+router.get('/getAll', function(req, res) {
+  Community.find({})
+    .then(function(communities){
+      res.json(communities);
+  });
+});
+
+router.post('/getAllUsers', function(req, res) {
+  let community_id = req.body.community_id;
+
+  if(!community_id)
+    return sendError(res,'community_id param is missing');
+  User.find({community_id})
+    .then(function(doc){
+      res.json(doc);
+  });
+});
+
+router.post('/getComments', function(req, res) {
+  let post_id = req.body.post_id;
+
+  if(!post_id)
+    return sendError(res,'post_id param is missing');
+
+  Community.find({
+    "posts._id": objectID(post_id)
+  }).select('posts').then((doc) => {
+    res.json(doc);
+  });
+});
+
+
+router.post('/getPosts', function(req, res) {
+  let user_id = req.body.user_id;
+
+  if(!user_id)
+    return sendError(res,'user_id param is missing');
+  User.findById(user_id).populate({
+    path: 'community_id',
+    populate: {
+      path: 'posts.author_id',
+      select: 'fullName level pic'
+    }
+  }).populate({
+    path: 'community_id',
+    populate: {
+      path: 'posts.comments.author_id',
+      select: 'fullName level pic'
+    }
+  })
+    .exec(function (err, user) {
+      if (err) return sendError(err.message);
+
+      res.json(user.community_id.posts);
+    });
+});
+
 router.put('/likePost', function(req, res) {
   let post_id = req.body.post_id;
 
@@ -55,17 +112,17 @@ router.put('/addComment', function(req, res) {
 });
 
 router.put('/addPost', function(req, res) {
-  let community_id = req.body.community_id;
   let user_id = req.body.user_id;
   let content = req.body.content;
 
-  if(!community_id || !user_id || !content)
+  if(!user_id || !content)
     return sendError(res,'community_id || user_id || content params are missing');
 
   User.findById(user_id, (err,user) => {
     if(!user)
        return sendError(res, `user: ${user_id} not exists`);
 
+    let community_id = user.community_id;
     Community.findById(community_id, (err,community) => {
       if(!community)
          return sendError(res, `community: ${community_id} not exists`);
@@ -75,9 +132,12 @@ router.put('/addPost', function(req, res) {
         content: content
       };
 
-      community.posts.push(newPost);
-      community.save();
-      sendSuccess(res);
+      community.posts.unshift(newPost);
+      community.save(function(err,community) {
+        let newPost = community.posts[0];
+        newPost.author_id = user;
+        res.send(newPost);
+      });
      });
    });
 });

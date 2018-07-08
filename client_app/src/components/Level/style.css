@@ -1,0 +1,8 @@
+.Level{
+  font-size:1em;
+  transition: 0.5s;
+}
+.Level.levelUp{
+  opacity: 0;
+    transform: scale(3) rotate(10deg);    
+}

@@ -1,0 +1,12 @@
+.Info{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+}
+.Info-Level{
+  margin-top: 10%;
+}
+.Info-Task{
+  margin-top: 10%;
+}

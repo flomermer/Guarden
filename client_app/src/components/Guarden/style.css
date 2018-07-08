@@ -1,0 +1,15 @@
+.Guarden{
+  display: flex;
+  flex-direction: column;
+  color: #044859;
+}
+
+.Guarden-Welcome{
+  width: 100%;
+  height:58vh; 
+  overflow: hidden;
+}
+.Guarden-Feed{
+  min-height: 42vh;
+  background: #e0e0e0;
+}

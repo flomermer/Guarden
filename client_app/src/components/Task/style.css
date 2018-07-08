@@ -1,0 +1,64 @@
+.Task{
+  display:flex;
+  flex-direction: column;
+}
+.Task-title{
+  margin-top: 12%;
+  color: #044859;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 7%;
+}
+.Task-desc{
+  color: #316977;
+  font-size: 1.1em;
+  margin-bottom: 20%;
+}
+.Task-Buttons{
+  display:flex;
+  flex-direction: row;
+}
+.Task-btn{
+  width: 50%;
+  height: 50px;
+  border-radius: 10px;
+  border: 0px;
+  font-size: 1.1em;
+}
+.Task-btn.active{
+  background: #ff8400;
+  color: #fff;
+  margin-right: 10px;
+}
+.Task-btn.passive{
+  background: #eee;
+  color: #044859;
+}
+.Task-btn .Task-points{
+  display:block;
+  margin-top: 1px;
+  font-size:0.6em;
+}
+.Task-btn.one{
+  width: 60%;
+}
+
+.CompletedTask{
+  margin-top: 15%;
+  text-align: center;
+  color: #ff8400;
+}
+.CompletedTask .CompletedTask-title{
+  margin-top: 7%;
+  font-size: 1.5em;
+}
+.CompletedTask .CompletedTask-content{
+  margin-top: 5%;
+  font-size: 0.8em;
+  margin-bottom: 8%;
+}
+.CompletedTask-content span{
+  font-style: italic;
+  font-size: 1em;
+}
+.LinkBtn{width:100%;text-decoration: none; color: inherit;}

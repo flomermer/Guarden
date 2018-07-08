@@ -1,0 +1,75 @@
+.Post{
+  background: #fff;
+  padding: 20px;
+  margin-bottom:20px;
+  border-radius: 10px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.Post-title-container{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  border:0px solid red;
+  postion: relative;
+  line-height: 1em;
+}
+
+.Post-profile-pic img{
+  width:40px;
+  height:40px;
+  border-radius: 50px;
+}
+.Post-author{
+  margin-left:5px;
+  font-weight: bold;
+  font-size: 1.2em;
+  border:0px solid red;
+}
+.Post-author-level{
+  font-size: 0.8em;
+  font-weight: lighter;
+  margin-left: 5px;
+}
+.Post-time{
+  margin-top:3px;
+  font-weight: normal;
+  font-size: 0.8em;
+}
+.Post-like{
+  margin-left: auto;
+}
+.Post-like svg{
+  color: #dedede;
+  font-size: 1.2em;
+}
+.Post-content-container{
+  margin-top:30px;
+  position: relative;
+}
+.Post-content{
+
+}
+.Post-comment{
+  position: absolute;
+  right: -6px;
+  bottom: -13px;
+}
+.Post-comment svg{
+  font-size: 1.7em;
+}
+.Post-comment span{
+  display: inline-block;
+  width: 28px;
+  border:0px solid red;
+  text-align: center;
+  position: relative;
+  bottom: 8px;
+  left: 27px;
+  font-size: 0.7em;
+}
+.Post-CommentList{
+  border-top: 1px dashed #ddd;
+  margin-top: 20px;
+}
