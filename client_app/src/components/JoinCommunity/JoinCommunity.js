@@ -39,8 +39,8 @@ class JoinCommunity extends Component{
     if (!this.props.user) return <Redirect to='GoogleLogin' />;
     if(this.props.user.community_id) return <Redirect to='/' />;
     return(
-      <div>
-        Please choose community to join:
+      <div class="commyinty_choose">
+       <h1> Please choose community to join:</h1> 
         <div>
           <input type='text' onChange={(e) => this.setState({term: e.target.value})} />
         </div>
