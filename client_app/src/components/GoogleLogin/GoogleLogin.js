@@ -21,7 +21,7 @@ class GoogleLogin extends Component{
    this.quickLogin = this.quickLogin.bind(this);
   }
   componentDidMount(){
-    this.quickLogin();
+    //this.quickLogin();
   }
   quickLogin(){
     //console.log(USER_ID);
@@ -65,20 +65,22 @@ class GoogleLogin extends Component{
 
     return(
       <div className="GoogleLogin">
-      <div className="logo"><img src={require('../../images/icon_g.svg')}/></div>
+          <div className="logo-container">
+            <img src={require('../../images/icon_g.svg')} alt='' />
+          </div>
 
-        <GoogleAuth socialId="847712332173-a6lvorpasd7vr5sudkh2eeqief6g97km.apps.googleusercontent.com"
-                     className="google-login"
-                     scope="profile"
-                     fetchBasicProfile={true}
-                     responseHandler={this.responseGoogle}
-                     buttonText="Login With Google"/>
-
-
-       <div className="google_bth"><img src={require('../../images/google_icon.png')}/></div>
-       <h2>Login With Google</h2>
+          <div className='login-container'>
+            <GoogleAuth socialId="847712332173-a6lvorpasd7vr5sudkh2eeqief6g97km.apps.googleusercontent.com"
+                         className="google-login"
+                         scope="profile"
+                         fetchBasicProfile={true}
+                         responseHandler={this.responseGoogle}
+                         buttonText="Login With Google"
+            />
+            <div className="google_bth"><img src={require('../../images/google_icon.png')} alt='' /></div>
+          </div>
       </div>
-     
+
     );
   }
 }
