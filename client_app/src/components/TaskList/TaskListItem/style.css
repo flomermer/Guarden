@@ -1,3 +1,43 @@
 .TaskListItem{
   margin-top: 20px;
+  display:flex;
+  flex-direction: row;
+  background: #eee;
+  min-height: 80px;
+  border-radius: 15px;
+  padding: 20px;
+}
+.TaskListItem.locked{
+  opacity: 0.4;
+}
+.TaskListItem > div{
+  display:flex;
+  flex-direction: column;
+}
+.TaskListItem-left{
+  border:0px solid red;
+  width: 80%;
+}
+.TaskListItem-right{
+  text-align: center;
+  vertical-align: middle;
+}
+.TaskListItem-title{
+  font-weight: bold;
+  font-size: 1.3em;
+  color: #044859;
+}
+.TaskListItem-points{
+  color: #f28f3b;
+  font-weight: bold;
+}
+.TaskListItem-level{
+  font-size: 0.7em;
+}
+.TaskListItem-expireDate{
+    font-weight: bold;
+    margin-top: 10px;
+}
+.TaskListItem-expireDate svg{
+    margin-right: 7px;
 }

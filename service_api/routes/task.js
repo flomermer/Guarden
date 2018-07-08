@@ -35,8 +35,8 @@ router.post('/getTasksList', function(req, res) {
      }, {multi: true}, (err,doc) => {
 
        Task.find({
-         community_id: user.community_id,
-         isOpen: true
+         community_id: user.community_id
+         /*isOpen: true*/
        }, (err,tasks) => {
          res.json(tasks);
        });

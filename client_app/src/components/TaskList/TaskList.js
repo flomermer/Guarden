@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './style.css';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -8,16 +9,17 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 
 import {ROOT_API} from '../../consts/consts';
-
 import TaskListItem from './TaskListItem/TaskListItem';
+import SelectTaskType from './SelectTaskType/SelectTaskType';
 
 class TaskList extends Component{
   constructor(props){
     super(props);
-    this.state = {tasks: [] };
+    this.state = {tasks: [], isSpecial: false };
 
     this.renderTask = this.renderTask.bind(this);
     this.chooseTask = this.chooseTask.bind(this);
+    this.selectType = this.selectType.bind(this);
   }
   componentDidMount(){
     this.fetchTasks();
@@ -42,10 +44,9 @@ class TaskList extends Component{
     const user_level = this.props.user.level;
     const task_id = task._id;
 
-    if(task.level>user_level){
-      alert("tomer");
+    if(task.level>user_level || task.expireDate)
       return false;
-    }
+
     const url = `${ROOT_API}/task/choose`;
     const request = axios({
       method: 'post',
@@ -60,9 +61,17 @@ class TaskList extends Component{
       this.props.history.push('/');
     });
   }
+  selectType(isSpecial){
+    this.setState({isSpecial});
+  }
   renderTask(task){
+    if(task.isSpecial!==this.state.isSpecial) return null;
+
+    const user = this.props.user;
+    const isLocked = (task.level>user.level || task.expireDate) ? 'locked' : '';
+
     return(
-      <TaskListItem key={task._id} task={task} chooseTask={this.chooseTask} />
+      <TaskListItem key={task._id} task={task} chooseTask={this.chooseTask} isLocked={isLocked} />
     );
   }
   render(){
@@ -71,7 +80,8 @@ class TaskList extends Component{
       return <Redirect to='/GoogleLogin' />;
 
     return(
-      <div>
+      <div className='TaskList'>
+        <SelectTaskType isSpecial={this.state.isSpecial} selectType={this.selectType} />
         {this.state.tasks.map(this.renderTask)}
       </div>
     );

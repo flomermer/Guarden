@@ -1,0 +1,16 @@
+.SelectTaskType{
+  display:flex;
+  flex-direction: row;
+  font-size: 1.2em;
+}
+
+.SelectTaskType div{
+  width: 50%;
+  text-align: center;
+  color: #ccc;
+}
+.SelectTaskType div.selected{
+  color: #f28f3b;
+  border: 1px solid #f28f3b;
+  border-radius: 10px;
+}

@@ -26,19 +26,19 @@ router.post('/getAllUsers', function(req, res) {
   });
 });
 
+/*
 router.post('/getComments', function(req, res) {
   let post_id = req.body.post_id;
 
   if(!post_id)
     return sendError(res,'post_id param is missing');
-
   Community.find({
-    "posts._id": objectID(post_id)
-  }).select('posts').then((doc) => {
+    'posts._id': post_id
+  }).then((doc) => {
     res.json(doc);
   });
 });
-
+*/
 
 router.post('/getPosts', function(req, res) {
   let user_id = req.body.user_id;
