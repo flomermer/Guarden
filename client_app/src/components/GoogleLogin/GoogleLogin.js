@@ -65,13 +65,20 @@ class GoogleLogin extends Component{
 
     return(
       <div className="GoogleLogin">
+      <div class="logo"><img src={require('../../images/icon_g.svg')}/></div>
+     
         <GoogleAuth socialId="847712332173-a6lvorpasd7vr5sudkh2eeqief6g97km.apps.googleusercontent.com"
                      className="google-login"
                      scope="profile"
                      fetchBasicProfile={true}
                      responseHandler={this.responseGoogle}
-                     buttonText="Login With Google"/>
+                     buttonText="Login With Google"
+                     buttomImage="../../images/google_icon.png"/>
+
+
+       <div class="google_bth"><img src={require('../../images/google_icon.png')}/></div>
       </div>
+     
     );
   }
 }
