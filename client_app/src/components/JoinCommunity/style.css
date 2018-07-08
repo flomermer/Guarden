@@ -1,11 +1,23 @@
-h1{
-    font-family: 'Montserrat';
-    font-size: 18px;
-    padding-top: 20px;
-    padding-left: 10px;
-}
-.commyinty_choose{
-    height: 700px;
+.JoinCommunity{
     width: 100%;
-    background-color: #F7ECE1;
+    min-height: 100vh;
+    background: #f7ece1;
+    padding: 20px;
+}
+.JoinCommunity-bar{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.JoinCommunity-bar input{
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border:1px solid #aaa;
+  padding: 5%;
+  color: #044859;
+  font-size: 0.8em;
+  margin-bottom: 15px;
+}
+.JoinCommunity-bar input::placeholder{
+  color: #aaa;
 }

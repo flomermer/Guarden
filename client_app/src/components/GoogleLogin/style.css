@@ -1,5 +1,5 @@
 .GoogleLogin{
-  background-color: #F7ECE1;
+  background: #f7ece1; 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
