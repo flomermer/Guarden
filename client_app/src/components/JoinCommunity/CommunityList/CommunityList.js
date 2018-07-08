@@ -27,7 +27,7 @@ class CommunityList extends Component{
     });
   }
   renderComm(comm){
-    if(comm.name.includes(this.props.keyword))
+    if(comm.name.toLowerCase().includes(this.props.keyword.toLowerCase()))
       return (<CommunityItem key={comm._id} comm={comm} onChoose={this.props.onChoose} />);
   }
   render(){
