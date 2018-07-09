@@ -37,6 +37,7 @@
 .TaskListItem-expireDate{
     font-weight: bold;
     margin-top: 10px;
+    font-size: 0.9em;
 }
 .TaskListItem-expireDate svg{
     margin-right: 7px;

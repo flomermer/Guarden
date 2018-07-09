@@ -70,14 +70,14 @@ class GoogleLogin extends Component{
           </div>
 
           <div className='login-container'>
-            <GoogleAuth socialId="847712332173-a6lvorpasd7vr5sudkh2eeqief6g97km.apps.googleusercontent.com"
+              <GoogleAuth socialId="847712332173-a6lvorpasd7vr5sudkh2eeqief6g97km.apps.googleusercontent.com"
                          className="google-login"
                          scope="profile"
                          fetchBasicProfile={true}
                          responseHandler={this.responseGoogle}
                          buttonText="Login With Google"
-            />
-            <div className="google_bth"><img src={require('../../images/google_icon.png')} alt='' /></div>
+              />
+              <div className="google_bth"><img src={require('../../images/google_icon.png')} alt='' /></div>
           </div>
       </div>
 
