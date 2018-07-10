@@ -15,31 +15,6 @@ router.get('/getAll', function(req, res) {
   });
 });
 
-router.post('/getAllUsers', function(req, res) {
-  let community_id = req.body.community_id;
-
-  if(!community_id)
-    return sendError(res,'community_id param is missing');
-  User.find({community_id})
-    .then(function(doc){
-      res.json(doc);
-  });
-});
-
-/*
-router.post('/getComments', function(req, res) {
-  let post_id = req.body.post_id;
-
-  if(!post_id)
-    return sendError(res,'post_id param is missing');
-  Community.find({
-    'posts._id': post_id
-  }).then((doc) => {
-    res.json(doc);
-  });
-});
-*/
-
 router.post('/getPosts', function(req, res) {
   let user_id = req.body.user_id;
 
@@ -201,11 +176,16 @@ router.post('/edit', function(req, res) {
 
 
 router.put('/add', function(req, res) {
-  let _name = req.body.name;
-  if(!_name)
+  let name = req.body.name;
+  let pic  = req.body.pic;
+  console.log(pic);
+  if(!name)
     return sendError(res,'name param is missing');
 
-  var newCommunity = new Community({ name: _name });
+  var newCommunity = new Community({
+    name,
+    pic
+  });
   newCommunity.save(function (err) {
     if (err) return res.json(err);
 

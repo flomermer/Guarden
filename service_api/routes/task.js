@@ -16,7 +16,7 @@ Date.prototype.addHours = function(h) {
    return this;
 }
 
-router.post('/getTasksList', function(req, res) {
+router.post('/getTaskList', function(req, res) {
   let user_id = req.body.user_id;
 
   if(!user_id)
@@ -36,7 +36,6 @@ router.post('/getTasksList', function(req, res) {
 
        Task.find({
          community_id: user.community_id
-         /*isOpen: true*/
        }, (err,tasks) => {
          res.json(tasks);
        });

@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {logout} from '../../actions/index.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPowerOff,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 class GoogleLogout extends Component{
   logout(){

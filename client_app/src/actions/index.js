@@ -23,7 +23,7 @@ export function fetchUser(user_id){
 }
 
 export function fetchTreeUsers(user_id){
-  const url = `${ROOT_API}/user/getTreeUsers`;
+  const url = `${ROOT_API}/user/getUsersByLevels`;
   const request = axios({
     method: 'post',
     url: url,

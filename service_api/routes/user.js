@@ -9,7 +9,7 @@ const sendError = require('./error');
 const sendSuccess = require('./success');
 
 
-router.post('/getTreeUsers', function(req, res) {
+router.post('/getUsersByLevels', function(req, res) {
   let user_id = req.body.user_id;
 
   if(!user_id)
@@ -58,6 +58,9 @@ router.post("/googleLogin", (req, res) => {
   const data = req.body;
   const {googleID, googleToken, email, pic, fullName} = data;
 
+  if(!googleID || !googleToken || !email || !pic || !fullName)
+    return sendError(res,"googleID || googleToken || email || pic || fullName params are missing");
+
   User.findOne({googleID}).then((user) => {
     if(!user){ //need to automatically sign up user
       var newUser = new User({
@@ -66,19 +69,11 @@ router.post("/googleLogin", (req, res) => {
         fullName,
         pic
       });
-      console.log(newUser);
       newUser.save((err, newUser) => {
         if(err) return sendError(err.message)
         return res.json(newUser);
       });
     } else { //user already exists
-      /*
-      user.googleToken = googleToken;
-      user.save((err, updatedUser) => {
-        if(err) return sendError(err.message)
-        return res.json(updatedUser);
-      });
-      */
       return res.json(user);
     }
   });
@@ -118,6 +113,22 @@ router.post('/edit', function(req, res) {
     return sendSuccess(res);
   });
 });
+
+router.delete('/delete', function(req, res) {
+  let _id = req.body.user_id;
+  if(!_id)
+    return sendError(res,"user_id is missing");
+
+
+  User.findOneAndRemove({ _id })
+    .exec(function(err, user) {
+      if (err || !user)
+        return sendError(res,`user_id ${_id} not found`);
+
+    return sendSuccess(res);
+  });
+});
+
 
 
 module.exports = router;

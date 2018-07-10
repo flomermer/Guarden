@@ -28,7 +28,7 @@
             <li><span class='title'>Get All Users</span>
               <ul>
                 <li>Relative Path: <span>/user/getAll</span></li>
-                <li>Verb: <span>Get</span></li>
+                <li>Verb: <span>GET</span></li>
                 <li>URL: <a href='/user/getAll' target='_blank'>/user/getAll</a></li>
                 <li>RESPOND:
                   <ul>
@@ -69,10 +69,73 @@
             <li><span class='title'>Delete User</span>
               <ul>
                 <li>Relative Path: <span>/user/delete</span></li>
-                <li>Verb: <span>Delete</span></li>
+                <li>Verb: <span>DELETE</span></li>
                 <li>Params:
                     <ul>
                       <li>user_id</li>
+                    </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class='title'>Get User by ID</span>
+              <ul>
+                <li>Relative Path: <span>/user/getByID</span></li>
+                <li>Verb: <span>POST</span></li>
+                <li>Description: <span>returns the user object by user_id</span></li>
+                <li>Params:
+                    <ul>
+                      <li>user_id</li>
+                    </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class='title'>Get Users by Levels</span>
+              <ul>
+                <li>Relative Path: <span>/user/getUsersByLevels</span></li>
+                <li>Verb: <span>POST</span></li>
+                <li>Description: <span>returns javascript object of users which level is the property</span></li>
+                <li>Params:
+                    <ul>
+                      <li>user_id</li>
+                    </ul>
+                </li>
+                <li>Respond Example:
+                  <ul>
+                    <li>{
+                        <br />
+                        &nbsp;&nbsp;&nbsp;2: {user}
+                        <br />
+                        &nbsp;&nbsp;&nbsp;3: {user}
+                         <br />
+                        &nbsp;&nbsp;&nbsp;5: {user}
+                         <br />
+                        &nbsp;&nbsp;&nbsp;8: etc
+                         <br />
+                        }
+                  </ul>
+              </ul>
+            </li>
+            <li><span class='title'>Google Login</span>
+              <ul>
+                <li>Relative Path: <span>/user/googleLogin</span></li>
+                <li>Verb: <span>POST</span></li>
+                <li>Description: <span>returns the user object by googleID if already exists or creates a new user to db if not.</span></li>
+                <li>Params (raw):
+                    <ul>
+                      <li>{
+                          <br />
+                          &nbsp;&nbsp;&nbsp;googleID,
+                          <br />
+                          &nbsp;&nbsp;&nbsp;googleToken,
+                           <br />
+                          &nbsp;&nbsp;&nbsp;email,
+                           <br />
+                          &nbsp;&nbsp;&nbsp;fullName,
+                           <br />
+                          &nbsp;&nbsp;&nbsp;pic
+                           <br />
+                          }
+                      </li>
                     </ul>
                 </li>
               </ul>
@@ -89,6 +152,7 @@
                   <li>Params:
                       <ul>
                         <li>name</li>
+                        <li>pic?</li>
                       </ul>
                   </li>
                 </ul>
@@ -120,7 +184,7 @@
                 <ul>
                   <li>Relative Path: <span>/community/invite</span></li>
                   <li>Verb: <span>POST</span></li>
-                  <li>Description: <span>Invite existing user to participate in a community. (used by Admin only).</span></li>
+                  <li>Description: <span>Invite existing user to participate in a community. </span></li>
                   <li>Params:
                       <ul>
                         <li>community_id</li>
@@ -201,7 +265,7 @@
                       <span class='title'>Get All Tasks</span>
                       <ul>
                           <li>Relative Path: <span>/task/getAll</span></li>
-                          <li>Verb: <span>Get</span></li>
+                          <li>Verb: <span>GET</span></li>
                           <li>URL: <a href='/task/getAll' target='_blank'>/task/getAll</a></li>
                           <li>
                               RESPOND:
@@ -211,6 +275,20 @@
 
                                       </div>
                                   </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <span class='title'>Get Task List</span>
+                      <ul>
+                          <li>Relative Path: <span>/task/getTaskList</span></li>
+                          <li>Verb: <span>POST</span></li>
+                          <li>Description:   <span>get all tasks in user's community. (also responsible to unlock expired tasks)<span></li>
+                          <li>
+                              Params:
+                              <ul>
+                                  <li>user_id</li>
                               </ul>
                           </li>
                       </ul>

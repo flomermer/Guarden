@@ -25,7 +25,7 @@ class TaskList extends Component{
     this.fetchTasks();
   }
   fetchTasks(){
-    const url = `${ROOT_API}/task/getTasksList`;
+    const url = `${ROOT_API}/task/getTaskList`;
     const user = this.props.user;
     if(!user)
       return <Redirect to='/GoogleLogin' />;

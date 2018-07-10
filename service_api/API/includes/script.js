@@ -26,12 +26,10 @@ function sortMenu(){
 function renderRespond(res){
   var url = res.data("url");
   var verb = res.data("verb");
-  console.log(url);
-  console.log(verb);
-  console.log("\n\n\n");
+  console.log(url,verb);
   $.ajax({
     url: url,
-    type: verb,
+    type: verb,    
     success: function(json){
       json = json.filter((i, index) => (index < 2)); //if array length is big -> display only first 2 objects
       res.jsonPresenter({json});
