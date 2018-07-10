@@ -66,7 +66,7 @@ class GoogleLogin extends Component{
     return(
       <div className="GoogleLogin">
           <div className="logo-container">
-            <img src={require('../../images/icon_g.svg')} alt='' />
+            <img src={require('../../images/guardenLogo.png')} alt='' />
           </div>
 
           <div className='login-container'>
