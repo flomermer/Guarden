@@ -11,9 +11,11 @@ class Info extends Component{
 
     return(
       <div className={`${this.props.className} Info`}>
-        <Level className="Info-Level" level={this.props.user.level}/>
+        <div className='Info-top-line'>
+          <Level className="Info-Level" level={this.props.user.level}/>
+          <GoogleLogout className='Info-GoogleLogout' />
+        </div>
         <Task className="Info-Task" user={user} />
-        <GoogleLogout />
       </div>
     );
   }

@@ -6,6 +6,7 @@ export const FETCH_TREE_USERS = 'FETCH_TREE_USERS';
 export const UPDATE_USER = 'UPDATE_USER';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const ADD_POST = 'ADD_POST';
+export const LOGOUT_USER  = 'LOGOUT_USER';
 
 export function fetchUser(user_id){
   const url = `${ROOT_API}/user/getByID`;
@@ -39,6 +40,13 @@ export function updateUser(user){
   return{
     type:UPDATE_USER,
     payload: user
+  }
+}
+
+export function logout(){
+  return{
+    type:LOGOUT_USER,
+    payload: null
   }
 }
 

@@ -2,11 +2,18 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 10px;
-}
-.Info-Level{
-  margin-top: 10%;
+  padding: 15px;
 }
 .Info-Task{
   margin-top: 10%;
+}
+.Info-top-line{
+  display:flex;
+  flex-direction: row;
+}
+.Info-GoogleLogout{
+  margin-left: auto;
+}
+.Info-GoogleLogout svg{
+  font-size: 1em;
 }
