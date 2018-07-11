@@ -11,9 +11,10 @@ const router_user = require('./routes/user');
 const router_task =require('./routes/task');
 
 const PORT = process.env.PORT || 8000;
+const MLAB_KEY = require('./consts').consts.MLAB_KEY;
 
 function startService(){
-  mongoose.connect("mongodb://grd_user:grd_pass123@ds139920.mlab.com:39920/guarden",function(err){
+  mongoose.connect(MLAB_KEY,function(err){
     console.log("connected to mLab");
   });
 
