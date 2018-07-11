@@ -10,12 +10,15 @@ import ReduxPromise from 'redux-promise';
 import reducers from './reducers';
 
 import Router from './Router.js';
+import FullScreen from 'react-fullscreen';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router />
+    <FullScreen>
+      <Router />
+    </FullScreen>
   </Provider>
 , document.getElementById('root'));
 registerServiceWorker();

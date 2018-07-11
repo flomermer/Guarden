@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 
 import {Redirect} from 'react-router-dom';
-
 import {connect} from 'react-redux';
+
 import Guarden from './components/Guarden/Guarden';
 
 class App extends Component {

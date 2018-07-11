@@ -12,6 +12,11 @@ import {USER_ID} from '../../consts/consts';
 import {Redirect} from 'react-router-dom';
 
 import { GoogleLogin as GoogleAuth } from 'react-google-login-component';
+import imgGoogleBtn from '../../images/google_icon.png';
+const imgLogo  = 'https://image.ibb.co/h1VNWo/guarden_logo.png';
+
+const socialID = `847712332173-6rs9bb850ls7piqt8fqpqrqgqfu0t32c.apps.googleusercontent.com`
+
 
 class GoogleLogin extends Component{
   constructor(props){
@@ -66,18 +71,18 @@ class GoogleLogin extends Component{
     return(
       <div className="GoogleLogin">
           <div className="logo-container">
-            <img src={require('../../images/guardenLogo.png')} alt='' />
+            <img src={imgLogo} alt='' />
           </div>
 
           <div className='login-container'>
-              <GoogleAuth socialId="847712332173-a6lvorpasd7vr5sudkh2eeqief6g97km.apps.googleusercontent.com"
+              <GoogleAuth socialId={socialID}
                          className="google-login"
                          scope="profile"
                          fetchBasicProfile={true}
                          responseHandler={this.responseGoogle}
                          buttonText="Login With Google"
               />
-              <div className="google_bth"><img src={require('../../images/google_icon.png')} alt='' /></div>
+            <div className="google_bth"><img src={imgGoogleBtn} alt='' /></div>
           </div>
       </div>
 

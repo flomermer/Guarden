@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import App from './App.js';
 import GoogleLogin from './components/GoogleLogin/GoogleLogin';
@@ -10,12 +10,12 @@ class Router extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Route exact path="/" component={App}></Route>
-          <Route exact path="/GoogleLogin" component={GoogleLogin}></Route>
-          <Route exact path="/JoinCommunity" component={JoinCommunity}></Route>
-          <Route exact path="/TaskList" component={TaskList}></Route>
-        </div>
+        <Switch>
+            <Route path="/GoogleLogin" component={GoogleLogin}></Route>
+            <Route path="/JoinCommunity" component={JoinCommunity}></Route>
+            <Route path="/TaskList" component={TaskList}></Route>
+            <Route path="/" component={App}></Route>
+        </Switch>        
       </BrowserRouter>
     );
   }
