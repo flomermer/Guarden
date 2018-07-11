@@ -24,6 +24,8 @@ class GoogleLogin extends Component{
 
    this.responseGoogle = this.responseGoogle.bind(this);
    this.quickLogin = this.quickLogin.bind(this);
+
+   console.log(`Running with service: ${ROOT_API}. you can modify it from './consts/consts'`);
   }
   componentDidMount(){
     //this.quickLogin();
