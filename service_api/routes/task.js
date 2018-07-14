@@ -97,7 +97,8 @@ router.post('/complete', function(req, res) {
 
         var newPost = {
           author_id: objectID(user_id),
-          content: `I've just completed Task: ${task.title}`
+          content: `I've just completed Task: ${task.title}`,
+          date: new Date()
         };
 
         community.posts.unshift(newPost);

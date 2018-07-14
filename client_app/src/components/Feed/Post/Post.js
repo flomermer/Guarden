@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 
 import Like from './Like/Like';
+import DateStr from './DateStr/DateStr';
 import CommentList from '../CommentList/CommentList';
 
 import './style.css';
@@ -29,7 +30,7 @@ class Post extends Component{
               {author.fullName}
               <span className='Post-author-level'>Level {author.level}</span>
             </div>
-            <div className='Post-time'>17:88</div>
+            <div className='Post-time'><DateStr date={post.date} /></div>
           </div>
           <div className='Post-like'><Like post={post} /></div>
         </div>

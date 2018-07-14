@@ -93,6 +93,7 @@ router.put('/addPost', function(req, res) {
   if(!user_id || !content)
     return sendError(res,'community_id || user_id || content params are missing');
 
+
   User.findById(user_id, (err,user) => {
     if(!user)
        return sendError(res, `user: ${user_id} not exists`);
@@ -104,7 +105,8 @@ router.put('/addPost', function(req, res) {
 
       var newPost = {
         author_id: objectID(user_id),
-        content: content
+        content: content,
+        date: new Date()
       };
 
       community.posts.unshift(newPost);
@@ -178,7 +180,6 @@ router.post('/edit', function(req, res) {
 router.put('/add', function(req, res) {
   let name = req.body.name;
   let pic  = req.body.pic;
-  console.log(pic);
   if(!name)
     return sendError(res,'name param is missing');
 
@@ -186,10 +187,11 @@ router.put('/add', function(req, res) {
     name,
     pic
   });
-  newCommunity.save(function (err) {
+
+  newCommunity.save(function (err, comm) {
     if (err) return res.json(err);
 
-    return sendSuccess(res);
+    return res.json(comm);
   });
 });
 

@@ -31,8 +31,7 @@ class GoogleLogin extends Component{
     //this.quickLogin();
   }
   quickLogin(){
-    //console.log(USER_ID);
-    console.log(USER_ID);
+    //console.log(USER_ID);    
     this.props.fetchUser(USER_ID);
     this.props.fetchTreeUsers(USER_ID);
   }
